@@ -1,6 +1,6 @@
 namespace Tut3;
 
-public class Container
+public abstract class Container
 {
     private static int _serialCounter = 1;
     
@@ -18,7 +18,7 @@ public class Container
         TareWeight = tareWeight;
     }
 
-    private string? GenerateSerialNumber()
+    private string GenerateSerialNumber()
     {
         return $"KON-{ContainerType}-{_serialCounter++}";
     }

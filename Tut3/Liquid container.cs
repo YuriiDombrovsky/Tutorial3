@@ -1,12 +1,12 @@
 namespace Tut3;
 
-public class Liquid_container : Container, IHazardNotifier
+public class LiquidContainer : Container, IHazardNotifier
 {
     public bool IsHazardous { get; }
 
     protected override string ContainerType => "L";
 
-    public Liquid_container(double maxPayload, double tareWeight, bool isHazardous) : base(maxPayload, tareWeight)
+    public LiquidContainer(double maxPayload, double tareWeight, bool isHazardous) : base(maxPayload, tareWeight)
     {
         IsHazardous = isHazardous;
     }
@@ -24,8 +24,8 @@ public class Liquid_container : Container, IHazardNotifier
         }
         if (mass + Mass > limit)
         {
-            NotifyHazard($"Attempted to overload hazardous container {SerialNumber}.");
-            throw new OverfillException($"Cannot load {mass}kg. Hazardous cargo limit is {limit}kg.");
+            NotifyHazard($"Attempted to overload container {SerialNumber}.");
+            throw new OverfillException($"Cannot load {mass}kg. Cargo limit is {limit}kg.");
         }
         
         base.LoadCargo(mass);
