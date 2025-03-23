@@ -24,19 +24,22 @@ public class RefrigeratedContainer : Container
     };
     
     
-    public RefrigeratedContainer(double maxPayload, double tareWeight, string productType, double temperature) : base(maxPayload, tareWeight)
+    public RefrigeratedContainer(double maxPayload, double tareWeight, string productType, double temperature, double height, double depth) 
+        : base(maxPayload, tareWeight, height, depth)
     {
-        if (!ProductTemperatures.ContainsKey(productType))
+        if (!ProductTemperatures.TryGetValue(productType, out double requiredTemperature))
         {
-            throw new Exception($"Product type {productType} is not supported");
+            throw new Exception($"Product type {productType} is not supported.");
         }
-        ProductType = productType;
-        RequiredTemperature = ProductTemperatures[ProductType];
-        if (Temperature > RequiredTemperature)
+
+        RequiredTemperature = requiredTemperature; 
+
+        if (temperature > RequiredTemperature)
         {
             throw new Exception($"Temperature {temperature} is too high");
         }
-        
+
+        ProductType = productType;
         Temperature = temperature;
     }
 

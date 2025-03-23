@@ -6,7 +6,8 @@ public class LiquidContainer : Container, IHazardNotifier
 
     protected override string ContainerType => "L";
 
-    public LiquidContainer(double maxPayload, double tareWeight, bool isHazardous) : base(maxPayload, tareWeight)
+    public LiquidContainer(double maxPayload, double tareWeight, double height, double depth, bool isHazardous) 
+        : base(maxPayload, tareWeight, height, depth)
     {
         IsHazardous = isHazardous;
     }

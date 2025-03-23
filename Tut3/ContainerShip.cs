@@ -9,6 +9,7 @@ public class ContainerShip
     public int MaxContainers { get; }
     //In tons
     public double MaxWeight { get; }
+    
     public List<Container> Containers { get; }
     
     public ContainerShip(string name, double maxSpeed, int maxContainers, double maxWeight)
@@ -42,7 +43,7 @@ public class ContainerShip
             return;
         }
         Containers.Add(container);
-        Console.WriteLine($"Container {container.SerialNumber} loaded onto ship.");
+        Console.WriteLine($"Container {container.SerialNumber} loaded onto {Name}.");
     }
 
     //Task: Load a list of containers onto a ship,
@@ -51,7 +52,7 @@ public class ContainerShip
 
     public void LoadContainers(List<Container> containers)
     {
-        foreach (var container in Containers)
+        foreach (var container in containers)
         {
             LoadContainer(container);
         }
@@ -84,7 +85,7 @@ public class ContainerShip
     {
         if (Containers.Remove(container))
         {
-            Console.WriteLine($"Container {container.SerialNumber} unloaded from ship.");
+            Console.WriteLine($"Container {container.SerialNumber} unloaded from {Name}.");
         }
         else
         {
@@ -97,7 +98,7 @@ public class ContainerShip
         var oldContainer = Containers.FirstOrDefault(c => c.SerialNumber == serialNumber);
         if (oldContainer == null)
         {
-            Console.WriteLine($"Container {serialNumber} not found on the ship.");
+            Console.WriteLine($"Container {serialNumber} not found on the {Name}.");
             return;
         }
         double newShipTotalWeight = newShip.getCurrentWeight();
@@ -112,11 +113,19 @@ public class ContainerShip
 
     }
 
-    public override string ToString()
+    public void PrintInfo()
     {
+        string containers = "Containers: ";
+        foreach (var container in Containers)
+        {
+            containers +=  ", " +container.SerialNumber ;
+        }
         //Print information about a given ship and its cargo.
         //Cargo of the ship is containers, but printing info about all of them feels redundant
-        return $"Ship {Name}: Speed: {MaxSpeed} knots, MaxContainers: {MaxContainers}, MaxWeight: {MaxWeight} tons, CContainers loaded: {Containers.Count}, TotalWeight: {getCurrentWeight()}";
+        Console.WriteLine( $"Ship {Name}: Speed: {MaxSpeed} knots, MaxContainers: {MaxContainers}, " +
+               $"MaxWeight: {MaxWeight} tons, Containers loaded: {Containers.Count}, " +
+               $"TotalWeight: {getCurrentWeight()}t, " +
+               $"{containers}");
 
     }
 }

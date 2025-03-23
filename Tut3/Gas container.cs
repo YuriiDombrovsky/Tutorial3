@@ -7,7 +7,8 @@ public class GasContainer : Container, IHazardNotifier
 
     protected override string ContainerType => "G";
 
-    public GasContainer(double maxPayload, double tareWeight, double pressure) : base(maxPayload, tareWeight)
+    public GasContainer(double maxPayload, double tareWeight, double height, double depth, double pressure) 
+        : base(maxPayload, tareWeight, height, depth)
     {
         Pressure = pressure;
     }
