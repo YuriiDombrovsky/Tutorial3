@@ -2,6 +2,11 @@ namespace Tut3;
 
 public class RefrigeratedContainer : Container
 {
+    //You can add only registered types, you can have only one type per container,
+    //each container has its temperature that cannot be higher than required
+    
+    //Since fridge is only container that has stated that we need to store information about what is inside,
+    //I assume that in other containers this information is not important
     public string ProductType { get; }
     public double Temperature { get; }
     
@@ -35,9 +40,10 @@ public class RefrigeratedContainer : Container
         Temperature = temperature;
     }
 
+    //Load cargo is just base one
 
-    public override void LoadCargo(double mass)
+    public override string ToString()
     {
-        base.LoadCargo(mass);
+        return base.ToString() + $", Temperature: {Temperature}, ProductType: {ProductType}, RequiredTemperature: {RequiredTemperature}";
     }
 }

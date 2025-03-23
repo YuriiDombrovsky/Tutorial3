@@ -34,8 +34,11 @@ public abstract class Container
     {
         Mass = 0;
     }
-    
-    
+
+    public override string ToString()
+    {
+        return $"{SerialNumber}: Mass: {Mass}kg, MaxPayload: {MaxPayload}kg, TareWeight: {TareWeight}kg";
+    }
 }
 
 public class OverfillException : Exception

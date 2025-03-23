@@ -35,4 +35,9 @@ public class LiquidContainer : Container, IHazardNotifier
     {
         Console.WriteLine($"[Hazard] {message}");
     }
+
+    public override string ToString()
+    {
+        return base.ToString() + $", Hazardous: {IsHazardous}";
+    }
 }
